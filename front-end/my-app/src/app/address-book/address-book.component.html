@@ -1,0 +1,42 @@
+<table class="table table-condensed table-bordered table-striped">
+  <thead>
+    <th>
+      <input type="checkbox" id="total" name="total"  value="total" (click)="toggleSelect($event)" />
+    </th>
+    <th (click)="sort('name')" i18n>Name</th>
+    <th (click)="sort('address.street')" i18n>Location</th>
+    <th (click)="sort('address.city')" i18n>Office</th>
+    <!-- <th colspan="2">Contact</th> -->
+    <th (click)="sort('phone')" i18n>Phone</th>
+    <th (click)="sort('email')" i18n>Email</th>
+  </thead>
+  <tbody>
+    <div *ngIf="isLoading" i18n>Loading...</div>
+    <tr *ngFor="let row of items; index as i;">
+      <td>
+        <input type="checkbox" name="cb_{{i}}" [checked]="row.selected" value="row.selected" id="cb_{{i}}"
+          (change)="row.selected = !(row.selected)" />
+      </td>
+      <td>{{row.name}}</td>
+      <td>{{row.address.street}}</td>
+      <td>{{row.address.city}}</td>
+      <td (dblclick)="onEdit($event, row)" *ngIf="!(row.isEditing); else elsePhone">{{row.phone}}</td>
+      <ng-template #elsePhone>
+        <td>
+          <input type="text" [value]="row.phone" (change)="row.phone = $event.target.value" />
+        </td>
+      </ng-template>
+      <td>{{row.email}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="action-bar__container">
+  <div class="action-bar__item">
+    <input i18n-value type="button" value="Delete" class="action-bar__btn--error" (click)="applyFilter()"/>
+  </div>
+  <div>
+    <input i18n-value type="button" value="Update" class="action-bar__btn--warn" (click)="updateSelected()" />
+    <input i18n-value type="button" value="Add" class="action-bar__btn--warn" (click)="addNew()" />
+  </div>
+</div>

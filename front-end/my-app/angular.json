@@ -33,6 +33,11 @@
             "scripts": []
           },
           "configurations": {
+            "zh": {
+              "localize": [
+                "zh-Hans"
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -71,6 +76,9 @@
           "configurations": {
             "production": {
               "browserTarget": "my-app:build:production"
+            },
+            "zh": {
+              "browserTarget": "my-app:build:zh"
             }
           }
         },
@@ -122,7 +130,14 @@
             }
           }
         }
+      },
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "zh-Hans": "messages.xlf"
+        }
       }
-    }},
+    }
+  },
   "defaultProject": "my-app"
 }

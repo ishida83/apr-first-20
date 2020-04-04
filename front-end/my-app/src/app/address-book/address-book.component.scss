@@ -1,0 +1,15 @@
+.action-bar__container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+
+  input{
+    margin: 0 10px;
+    &.action-bar__btn--error{
+      background-color: rgb(226, 157, 157);
+    }
+    &.action-bar__btn--warn{
+      background-color: rgb(255, 217, 94);
+    }
+
+  }
+}
